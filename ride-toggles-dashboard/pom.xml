@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ride</groupId>
+        <artifactId>ride-toggles</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <groupId>ride-toggles-dashboard</groupId>
+    <artifactId>ride-toggles-dashboard</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+    <name>Ride Toggles Dashboard</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.ff4j</groupId>
+            <artifactId>ff4j-web</artifactId>
+            <version>1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>ride</groupId>
+            <artifactId>ride-toggles-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>ride-toggles-dashboard</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
+                <configuration>
+                    <useTestClasspath>true</useTestClasspath>
+                    <contextPath>/toggles</contextPath>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <stopPort>8065</stopPort>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8080</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <issueManagement>
+        <url>jira.rezgateway.com</url>
+    </issueManagement>
+    <scm>
+        <developerConnection>chathurabuddi</developerConnection>
+    </scm>
+    <organization>
+        <name>Rezgateway Inc.</name>
+        <url>http://rezgateway.com</url>
+    </organization>
+</project>
