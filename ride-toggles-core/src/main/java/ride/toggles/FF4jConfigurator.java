@@ -11,6 +11,7 @@ import org.ff4j.property.store.JdbcPropertyStore;
 import org.ff4j.property.store.PropertyStore;
 import org.ff4j.redis.RedisConnection;
 import org.ff4j.store.JdbcFeatureStore;
+import org.ff4j.store.JdbcQueryBuilder;
 
 public class FF4jConfigurator{
 
@@ -18,14 +19,18 @@ public class FF4jConfigurator{
 
     public FF4jConfigurator(FF4j ff4j) {
         BasicDataSource dbcpDataSource = new BasicDataSource();
-        dbcpDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dbcpDataSource.setUsername("namal");
-        dbcpDataSource.setPassword("123456");
-        dbcpDataSource.setUrl("jdbc:mysql://192.168.0.222:3306/ff4j");
+        dbcpDataSource.setDriverClassName("org.postgresql.Driver");
+        dbcpDataSource.setUsername("postgres");
+        dbcpDataSource.setPassword("");
+        dbcpDataSource.setUrl("jdbc:postgresql://192.168.1.84:5433/PGRS1");
 
-        FeatureStore featureStore = new JdbcFeatureStore(dbcpDataSource);
-        PropertyStore propertyStore = new JdbcPropertyStore(dbcpDataSource);
-        EventRepository eventRepository = new JdbcEventRepository(dbcpDataSource);
+        JdbcFeatureStore featureStore = new JdbcFeatureStore(dbcpDataSource);
+        JdbcPropertyStore propertyStore = new JdbcPropertyStore(dbcpDataSource);
+        JdbcEventRepository eventRepository = new JdbcEventRepository(dbcpDataSource);
+
+        featureStore.setQueryBuilder(new JdbcQueryBuilder("ff4j.FF4j_", ""));
+        propertyStore.setQueryBuilder(new JdbcQueryBuilder("ff4j.FF4j_", ""));
+        eventRepository.setQueryBuilder(new JdbcQueryBuilder("ff4j.FF4j_", ""));
 
         RedisConnection redisConnection = new RedisConnection("localhost", 6379);
         FeatureCacheProviderRedis fcr = new FeatureCacheProviderRedis();

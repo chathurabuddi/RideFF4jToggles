@@ -33,6 +33,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.6</version>
         </dependency>
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>8.0-312.jdbc3</version>
+        </dependency>
     </dependencies>
     <issueManagement>
         <url>jira.rezgateway.com</url>
